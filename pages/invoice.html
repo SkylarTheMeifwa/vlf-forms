@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../assets/VLF Logo.png">
+</head>
+
+<body>
+    <script src="../js/dropbox.js"></script>
+    <script src="../js/menu.js"></script>
+    <div id="menu-container"></div>
+    <h1>Invoice Form</h1>
+    <form id="InvoiceForm">
+        <div class="card">
+            <h2>Company Information</h2>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <input type="text" id="CI-Rep" placeholder="Representative Name" required>
+                <input type="text" id="CI-Email" placeholder="Email" required>
+                <input type="text" id="CI-Phone" placeholder="Phone" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Business Information</legend>
+                <input type="text" id="CI-Name" placeholder="Company Name" required>
+                <input type="text" id="CI-Street" placeholder="Street Address" required>
+                <input type="text" id="CI-City" placeholder="City" required>
+                <input type="text" id="CI-State" placeholder="State" required>
+                <input type="text" id="CI-Zip" placeholder="Zip" required>
+            </fieldset>
+
+        </div>
+
+        <div class="card">
+            <h2>Pick Up Information</h2>
+            <div class="PU-Info">
+                <fieldset>
+                    <legend>From</legend>
+                    <input type="text" id="PU-Company" placeholder="Company Name" required>
+                    <input type="text" id="PU-Street" placeholder="Street Address" required>
+                    <input type="text" id="PU-City" placeholder="City" required>
+                    <input type="text" id="PU-State" placeholder="State" required>
+                    <input type="text" id="PU-Zip" placeholder="Zip" required>
+                </fieldset>
+
+                <fieldset class="time">
+                    <legend>At</legend>
+                    <input type="date" id="PU-Date" required>
+                    <input type="time" id="PU-Time" required>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Delivery Information</h2>
+            <div class="Del-Info">
+                <fieldset>
+                    <legend>To</legend>
+                    <input type="text" id="Del-Company" placeholder="Company Name" required>
+                    <input type="text" id="Del-Street" placeholder="Street Address" required>
+                    <input type="text" id="Del-City" placeholder="City" required>
+                    <input type="text" id="Del-State" placeholder="State" required>
+                    <input type="text" id="Del-Zip" placeholder="Zip" required>
+                </fieldset>
+
+                <fieldset class="time">
+                    <legend>On</legend>
+                    <input type="date" id="Del-Date" required>
+                    <input type="time" id="Del-Time" required>
+                </fieldset>
+            </div>
+            <fieldset>
+                <Legend>Delivery Point of Contact</Legend>
+                <textarea id="Del-POC" placeholder="Name and Phone Number of Delivery Point of Contact"
+                    required></textarea>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <h2>Service Information</h2>
+            <fieldset>
+                <legend>Brief Description of Services Provided</legend>
+                <input type="text" id="SI-Services" placeholder="i.e. 'General Freight Transportation'" required>
+            </fieldset>
+
+            <fieldset class="ServiceDetails">
+                <legend>Detailed Description of Services Provided</legend>
+                <input type="text" id="SI-Desc"
+                    placeholder="i.e. 'Transportation of 10 Boxes Containing Clothing Material'" required>
+                <input type="number" id="SI-Qty" placeholder="QTY/Miles" required>
+                <input type="number" id="SI-UnitPrice" placeholder="Unit Price" required>
+                <input type="text" id="SI-Desc2"
+                    placeholder="i.e. 'Boxes Dimensions and Weight: 20FTx20FTx20FT and 15 lbs ea.'">
+                <input type="number" id="SI-Qty2" placeholder="QTY/Miles">
+                <input type="number" id="SI-UnitPrice2" placeholder="Unit Price">
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <h2>Financial Information</h2>
+            <div class="PaymentInfo">
+                <fieldset>
+                    <legend>Payment Information</legend>
+                    <select id="FI-Method" required>
+                        <option value="" disabled selected>Select Payment Type</option>
+                        <option value="Cash">Cash</option>
+                        <option value="CHK">Check</option>
+                        <option value="CC">Credit Card</option>
+                        <option value="ACH">ACH (Bank Transfer)</option>
+                        <option value="Net15">Net 15 Days</option>
+                        <option value="Net30">Net 30 Days</option>
+                    </select>
+                </fieldset>
+                <fieldset class="PaymentDate">
+                    <legend>Due by</legend>
+                    <input type="date" id="FI-Date" required>
+                </fieldset>
+            </div>
+            <div class="FI-Pricing">
+                <fieldset>
+                    <Legend>Price Adjustments</Legend>
+                    <div class="FI-Discount">
+                        <input type="number" id="FI-Discount" placeholder="Discount %">
+                        <p>Amount: $<span id="FI-DiscountAmount">0.00</span></p>
+                    </div>
+                    <div class="FI-Adjustments">
+                        <input type="number" id="FI-AddAdj" placeholder="Adjustments">
+                        <input type="text" id="FI-AddAdjDesc" placeholder="Why was this additional adjustment made?">
+                    </div>
+                </fieldset>
+
+                <fieldset class="FI-Totals">
+                    <Legend>Totals</Legend>
+                    <div class="calculation-display">
+                        <p>Subtotal: $<span id="SubtotalDisplay">0.00</span></p>
+                        <p>Discounted: $<span id="AfterDiscountDisplay">0.00</span></p>
+                        <p><strong>Total: $<span id="TotalDisplay">0.00</span></strong></p>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Other Information</h2>
+            <fieldset>
+                <legend>Additional Notes</legend>
+                <textarea id="Notes" placeholder="Any additional notes or comments can be added here."></textarea>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <h2>Invoice Number</h2>
+            <fieldset>
+
+                <label id="IN-Label">Use Company Initials, Year, and number of services provided for the company.
+                    </br>An example Invoice Number is provided: VLF-I2600001</label>
+                <div class="IN-Info">
+                    <input type="text" id="IN-Initials" placeholder="VLF" required>
+                    <text>-I</text>
+                    <input type="number" id="IN-Year" placeholder="26" minlength="2" maxlength="2" required>
+                    <input type="number" id="IN-SeqNum" placeholder="00001" minlength="5" maxlength="5" required>
+                </div>
+                <div class="InvoiceNumber">
+                    <label for="InvoiceNumberPreview">Invoice Number:</label>
+                    <text id="InvoiceNumberPreview"></text>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <div class="submit">
+                <fieldset class="SubDate">
+                    <Label for="SubDate">Submitted On:</Label>
+                    <input type="date" id="SubDate" required>
+                </fieldset>
+
+                <fieldset class="buttons">
+                    <button type="submit" class="button">Download Invoice Form</button>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+
+    <script src="../js/jszip.min.js"></script>
+    <script src="../js/invoice.js"></script>
+</body>

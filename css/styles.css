@@ -1,0 +1,218 @@
+h1 {
+    text-align: center;
+    color: rgb(225, 153, 0);
+}
+
+h2 {
+    margin-top:auto;
+    color: rgb(225, 153, 0);
+}
+
+legend,
+strong,
+#TotalDisplay {
+    color: rgb(40, 53, 146);
+    font-weight: bold;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.buttons {
+    align-items: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(40, 53, 146);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.button:hover{
+    background-color: #0056b3;
+}
+
+
+/* =========================
+   FIELDSET
+   ========================= */
+
+fieldset {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 2fr) minmax(0, 1fr);
+    gap: 5px;
+    margin-bottom: 2.5px;
+    margin-top: 2.5px;
+
+    /* Prevent padding/border from making the fieldset wider */
+    box-sizing: border-box;
+    border-color: rgb(225, 153, 0);
+
+    /* Allows the fieldset to shrink inside its parent */
+    min-width: 0;
+    position: relative;
+}
+
+.ServiceDetails {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.IN-Info {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 10% 5% 7% 12%;
+}
+
+.FI-Discount,
+.FI-Adjustments {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+}
+
+.FI-Discount p {
+    margin: 0;
+    align-self: center;
+}
+.FI-Totals .calculation-display p{
+    margin: 5px 0;
+}
+
+.SubDate {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 2fr);
+    align-items: center;
+}
+/* =========================
+   INPUTS
+   ========================= */
+
+fieldset input {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.time input,
+.IN-Info input,
+.IN-Info text,
+#FI-Date,
+#FI-Discount,
+#FI-AddAdj,
+#FI-AddAdjDesc,
+.SubDate > label {
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* =========================
+   Side-by-side fieldsets
+   ========================= */
+
+.PU-Info,
+.Del-Info,
+.PaymentInfo,
+.FI-Pricing,
+.submit {
+    display: flex;
+    gap: 0;
+}
+
+/* Left section */
+.FI-Pricing > fieldset:first-child,
+.PU-Info > fieldset:first-child,
+.Del-Info > fieldset:first-child,
+.PaymentInfo > fieldset:first-child {
+    flex: 3;
+    min-width: 0;
+    margin-right: 0;
+    border-right: none;
+}
+
+.submit > fieldset:first-child {
+    flex: 2;
+    min-width: 0;
+    margin-right: 0;
+    border-right: none;
+}
+
+/* Right section */
+.FI-Pricing > fieldset.FI-Totals,
+.PU-Info > fieldset.time,
+.Del-Info > fieldset.time,
+.PaymentInfo > fieldset.PaymentDate {
+    flex: 1;
+    min-width: 0;
+    margin-left: 0;
+    border-left: none;
+    grid-template-columns: 1fr;
+}
+
+.submit > fieldset.buttons {
+    flex: 2;
+    min-width: 0;
+    margin-left: 0;
+    border-left: none;
+    grid-template-columns: 1fr;
+}
+
+/* =========================
+   Full Width Fields
+   ========================= */
+
+#CI-Rep,
+#CI-Email,
+#CI-Phone,
+#CI-Name,
+#CI-Street,
+#PU-Company,
+#PU-Street,
+#Del-Company,
+#Del-Street,
+#FI-Method,
+#SI-Services,
+#IN-Label,
+.InvoiceNumber,
+.QuoteNumber,
+.ReceiptNumber,
+.FI-Discount,
+.FI-Adjustments,
+#Del-POC,
+#Notes {
+    grid-column: 1 / 4;
+}
+
+
+/* =========================
+   CARDS
+   ========================= */
+
+.card {
+    border: 1px solid rgb(40, 53, 146);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+
+    /* Important */
+    box-sizing: border-box;
+    max-width: 644px;
+    min-width: 644px;
+    justify-self: center;
+}

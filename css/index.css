@@ -1,0 +1,96 @@
+/* =========================
+   Landing Page
+   ========================= */
+
+.landing-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.landing-logo {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+
+    margin-bottom: 10px;
+}
+
+.landing-page h1 {
+    margin: 0;
+
+    color: rgb(225, 153, 0);
+
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.landing-subtitle {
+    margin: 6px 0 20px;
+
+    color: #555;
+
+    font-size: 16px;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.form-buttons .button {
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px 5px;
+
+    background-color: rgb(40, 53, 146);
+    color: white;
+
+    text-decoration: none;
+
+    border: 2px solid rgb(40, 53, 146);
+    border-radius: 8px;
+
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.2s,
+        background-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.button-title {
+    color: rgb(225, 153, 0);
+
+    font-size: 19px;
+    font-weight: bold;
+
+    margin-bottom: 3px;
+}
+
+.button-description {
+    color: white;
+
+    font-size: 12px;
+}
+
+.form-buttons .button:hover {
+    background-color: rgb(50, 65, 165);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}

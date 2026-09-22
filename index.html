@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VLF Forms</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="assets/VLF Logo.png">
+</head>
+
+<body>
+    <script src="js/dropbox.js"></script>
+    <main class="landing-page">
+
+        <img src="assets/VLF Logo.png" alt="VLF Logo" class="landing-logo">
+
+        <h1>Visionary Logistics Firm, LLC</h1>
+
+        <p class="landing-subtitle">
+            Log into Dropbox to get started.</p>
+        <div class="form-buttons">
+
+            <a onclick="connectDropbox()" class="button">
+                <span class="button-title">Dropbox Login</span>
+                <span class="button-description">
+                    Login lasts for 4 hours
+                </span>
+            </a>
+
+            <a onclick="testDropboxConnection()" class="button">
+                <span class="button-title">Test Connection</span>
+                <span class="button-description">
+                    Don't know how long it's been?
+                </span>
+            </a>
+
+        </div>
+
+        <p>
+            Select a form to get started.
+        </p>
+
+        <p>
+            <strong class="landing-bold">
+                Note: To get formulas to calculate on any downloaded form,
+                </br>you may need to press the enable editing button.
+            </strong>
+        </p>
+
+        <div class="form-buttons">
+
+            <a href="#" onclick="openFormIfAccessible(
+                'QuoteTemplate.xlsx',
+                'pages/quote.html'
+            ); return false;" class="button">
+                <span class="button-title">Quote</span>
+                <span class="button-description">
+                    Create a new quote
+                </span>
+            </a>
+
+            <a href="#" onclick="openFormIfAccessible(
+                'InvoiceTemplate.xlsx',
+                'pages/invoice.html'
+            ); return false;" class="button">
+                <span class="button-title">Invoice</span>
+                <span class="button-description">
+                    Create a new invoice
+                </span>
+            </a>
+
+            <a href="#" onclick="openFormIfAccessible(
+                'ReceiptTemplate.xlsx',
+                'pages/receipt.html'
+            ); return false;" class="button">
+                <span class="button-title">Receipt</span>
+                <span class="button-description">
+                    Create a new receipt
+                </span>
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
