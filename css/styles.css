@@ -4,7 +4,7 @@ h1 {
 }
 
 h2 {
-    margin-top:auto;
+    margin-top: auto;
     color: rgb(225, 153, 0);
 }
 
@@ -14,6 +14,7 @@ strong,
     color: rgb(40, 53, 146);
     font-weight: bold;
 }
+
 
 /* =========================
    BUTTONS
@@ -32,7 +33,7 @@ strong,
     border-radius: 4px;
 }
 
-.button:hover{
+.button:hover {
     background-color: #0056b3;
 }
 
@@ -43,7 +44,7 @@ strong,
 
 fieldset {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: 7fr 2fr 1.25fr;
     gap: 5px;
     margin-bottom: 2.5px;
     margin-top: 2.5px;
@@ -78,9 +79,7 @@ fieldset {
     margin: 0;
     align-self: center;
 }
-.FI-Totals .calculation-display p{
-    margin: 5px 0;
-}
+
 
 .SubDate {
     display: grid;
@@ -88,6 +87,7 @@ fieldset {
     grid-template-columns: minmax(0, 2fr) minmax(0, 2fr);
     align-items: center;
 }
+
 /* =========================
    INPUTS
    ========================= */
@@ -102,12 +102,22 @@ fieldset input {
 .time input,
 .IN-Info input,
 .IN-Info text,
-#FI-Date,
+.date,
 #FI-Discount,
 #FI-AddAdj,
 #FI-AddAdjDesc,
-.SubDate > label {
+.SubDate>label,
+.date>input {
     text-align: center;
+}
+
+.date {
+    display: grid;
+    grid-template-columns: 32px 15px 28px 15px 50px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    align-items: center;
+
 }
 
 textarea {
@@ -132,46 +142,47 @@ input[type="number"]::-webkit-outer-spin-button {
 .FI-Pricing,
 .submit {
     display: flex;
-    gap: 0;
+    gap: 0px;
 }
 
 /* Left section */
-.FI-Pricing > fieldset:first-child,
-.PU-Info > fieldset:first-child,
-.Del-Info > fieldset:first-child,
-.PaymentInfo > fieldset:first-child {
+.FI-Pricing>fieldset:first-child,
+.PU-Info>fieldset:first-child,
+.Del-Info>fieldset:first-child,
+.PaymentInfo>fieldset:first-child {
     flex: 3;
     min-width: 0;
     margin-right: 0;
     border-right: none;
 }
 
-.submit > fieldset:first-child {
+.submit>fieldset:first-child {
     flex: 2;
     min-width: 0;
-    margin-right: 0;
+    margin-right: 0 !important;
     border-right: none;
 }
 
 /* Right section */
-.FI-Pricing > fieldset.FI-Totals,
-.PU-Info > fieldset.time,
-.Del-Info > fieldset.time,
-.PaymentInfo > fieldset.PaymentDate {
+.FI-Pricing>fieldset.FI-Totals,
+.PU-Info>fieldset.time,
+.Del-Info>fieldset.time,
+.PaymentInfo>fieldset.PaymentDate {
     flex: 1;
     min-width: 0;
-    margin-left: 0;
+    margin-left: 0 !important;
     border-left: none;
     grid-template-columns: 1fr;
 }
 
-.submit > fieldset.buttons {
+.submit>fieldset.buttons {
     flex: 2;
     min-width: 0;
     margin-left: 0;
     border-left: none;
     grid-template-columns: 1fr;
 }
+
 
 /* =========================
    Full Width Fields
@@ -195,7 +206,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .FI-Discount,
 .FI-Adjustments,
 #Del-POC,
-#Notes {
+#PU-POC,
+#Notes,
+.FI-Adjustments label {
     grid-column: 1 / 4;
 }
 

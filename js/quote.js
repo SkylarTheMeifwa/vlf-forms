@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================================================
+    // =====================
     // FORM
-    // =========================================================
+    // =====================
 
     const quoteForm = document.getElementById("QuoteForm");
 
@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================================================
+    // =====================
     // HELPER FUNCTIONS
-    // =========================================================
+    // =====================
 
     function getValue(id) {
         return document.getElementById(id).value.trim();
@@ -24,15 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
         return Number(document.getElementById(id).value) || 0;
     }
 
+    function getDate(monthID, dayID, yearID) {
+        const month = getNumber(monthID);
+        const day = getNumber(dayID);
+        const year = getNumber(yearID);
 
-    // =========================================================
+        if (!month || !day || !year) {
+            return "";
+        }
+
+        return `${month}/${day}/${year}`;
+    }
+
+
+    // =====================
     // SERVICE & FINANCIAL INPUTS
-    // =========================================================
+    // =====================
 
     const quantity1 = document.getElementById("SI-Qty");
     const unitPrice1 = document.getElementById("SI-UnitPrice");
 
-    const serviceDesc2 = document.getElementById("SI-Desc2");
     const quantity2 = document.getElementById("SI-Qty2");
     const unitPrice2 = document.getElementById("SI-UnitPrice2");
 
@@ -41,17 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const adjustmentDescription = document.getElementById("FI-AddAdjDesc");
 
 
-    // =========================================================
+    // =====================
     // CONDITIONAL REQUIRED FIELDS
-    // =========================================================
-
-    function updateServiceDesc2Required() {
-        const hasDescription = serviceDesc2.value.trim() !== "";
-        quantity2.required = hasDescription;
-        unitPrice2.required = hasDescription;
-    }
-
-    serviceDesc2.addEventListener("input", updateServiceDesc2Required);
+    // =====================
 
     function updateAdjustmentRequired() {
         const hasAdjustment = adjustment.value.trim() !== "";
@@ -61,9 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
     adjustment.addEventListener("input", updateAdjustmentRequired);
 
 
-    // =========================================================
+    // =====================
     // QUOTE CALCULATIONS
-    // =========================================================
+    // =====================
 
     function calculateQuote() {
 
@@ -112,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateQuote();
 
 
-    // =========================================================
+    // =====================
     // QUOTE NUMBER
-    // =========================================================
+    // =====================
 
     const initials = document.getElementById("IN-Initials");
     const year = document.getElementById("IN-Year");
@@ -127,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function buildQuoteNumber() {
         return (
             initials.value.trim().toUpperCase() +
-            "-Q" +
+            "-I" +
             year.value.trim() +
             seqNum.value.trim()
         );
@@ -149,9 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
     seqNum.addEventListener("input", updateQuoteNumber);
 
 
-    // =========================================================
+    // =====================
     // SUBMIT FORM
-    // =========================================================
+    // =====================
 
     quoteForm.addEventListener(
         "submit",
@@ -161,9 +164,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             try {
 
-                // =====================================================
+                // =====================
                 // 1. GET FORM VALUES
-                // =====================================================
+                // =====================
 
                 const formData = {
 
@@ -183,8 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     PUcity: getValue("PU-City"),
                     PUstate: getValue("PU-State"),
                     PUzip: getValue("PU-Zip"),
-                    PUdate: getValue("PU-Date"),
+                    PUdate: getDate("PU-month", "PU-day", "PU-year"),
                     PUtime: getValue("PU-Time"),
+                    PuPoc: getValue("PU-POC"),
 
                     // Delivery Info
                     Delcompany: getValue("Del-Company"),
@@ -192,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Delcity: getValue("Del-City"),
                     Delstate: getValue("Del-State"),
                     Delzip: getValue("Del-Zip"),
-                    Deldate: getValue("Del-Date"),
+                    Deldate: getDate("Del-month", "Del-day", "Del-year"),
                     Deltime: getValue("Del-Time"),
                     DelPoc: getValue("Del-POC"),
 
@@ -208,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Financial Info
                     FImethod: getValue("FI-Method"),
-                    
+
                     // Excel percentage value
                     FIdiscount: getNumber("FI-Discount") / 100,
 
@@ -223,13 +227,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         "\n" +
                         getValue("Notes"),
 
-                    SubDate: getValue("SubDate")
+                    SubDate: getDate("SD-month", "SD-day", "SD-year"),
                 };
 
 
-                // =====================================================
+                // =====================
                 // 2. LOAD EXCEL TEMPLATE
-                // =====================================================
+                // =====================
+
 
                 const arrayBuffer =
                     await downloadDropboxTemplate(
@@ -240,9 +245,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     await JSZip.loadAsync(arrayBuffer);
 
 
-                // =====================================================
+                // =====================
                 // 3. LOAD WORKBOOK XML
-                // =====================================================
+                // =====================
 
                 let workbookXML =
                     await zip
@@ -250,9 +255,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         .async("string");
 
 
-                // =====================================================
+                // =====================
                 // 4. LOAD WORKSHEET XML
-                // =====================================================
+                // =====================
 
                 const worksheetFile =
                     zip.file("xl/worksheets/sheet1.xml");
@@ -267,9 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     await worksheetFile.async("string");
 
 
-                // =====================================================
+                // =====================
                 // 5. LOAD SHARED STRINGS
-                // =====================================================
+                // =====================
 
                 const sharedStringsFile =
                     zip.file("xl/sharedStrings.xml");
@@ -284,9 +289,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     await sharedStringsFile.async("string");
 
 
-                // =====================================================
+                // =====================
                 // 6. GET SHARED STRING COUNT
-                // =====================================================
+                // =====================
 
                 const uniqueCountMatch =
                     sharedStringsXML.match(
@@ -303,9 +308,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     parseInt(uniqueCountMatch[1], 10);
 
 
-                // =====================================================
+                // =====================
                 // 7. ADD SHARED STRING
-                // =====================================================
+                // =====================
 
                 function addSharedString(value) {
 
@@ -330,9 +335,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // =====================================================
+                // =====================
                 // 8. ADD FORM VALUES TO SHARED STRINGS
-                // =====================================================
+                // =====================
 
                 const indexes = {
 
@@ -354,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     PUzip: addSharedString(formData.PUzip),
                     PUdate: addSharedString(formData.PUdate),
                     PUtime: addSharedString(formData.PUtime),
+                    PuPoc: addSharedString(formData.PuPoc),
 
                     // Delivery
                     Delcompany: addSharedString(formData.Delcompany),
@@ -372,19 +378,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Financial
                     FImethod: addSharedString(formData.FImethod),
-                    
+
                     // Quote Number
                     INfinal: addSharedString(formData.INfinal),
 
                     // Additional Info
                     Notes: addSharedString(formData.Notes),
-                    SubDate: addSharedString(formData.SubDate)
+                    SubDate: addSharedString(formData.SubDate),
                 };
 
 
-                // =====================================================
+                // =====================
                 // 9. UPDATE UNIQUE COUNT
-                // =====================================================
+                // =====================
 
                 sharedStringsXML =
                     sharedStringsXML.replace(
@@ -393,9 +399,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                // =====================================================
+                // =====================
                 // 10. REPLACE EXISTING SHARED-STRING CELL
-                // =====================================================
+                // =====================
 
                 function replaceExistingCellValue(
                     cellAddress,
@@ -437,9 +443,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // =====================================================
+                // =====================
                 // 11. REPLACE NUMERIC CELL
-                // =====================================================
+                // =====================
 
                 function replaceNumericCellValue(
                     cellAddress,
@@ -496,9 +502,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // =====================================================
+                // =====================
                 // 12. REPLACE BLANK CELL
-                // =====================================================
+                // =====================
 
                 function replaceBlankCellValue(
                     cellAddress,
@@ -527,15 +533,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
                     worksheetXML = worksheetXML.replace(
-                            originalCell,
-                            updatedCell
-                        );
+                        originalCell,
+                        updatedCell
+                    );
                 }
 
 
-                // =====================================================
+                // =====================
                 // 13. UPDATE EXCEL CELLS
-                // =====================================================
+                // =====================
 
                 // Company Info
                 replaceExistingCellValue("A12", indexes.CIrep);
@@ -556,6 +562,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 replaceExistingCellValue("E20", indexes.PUzip);
                 replaceExistingCellValue("B21", indexes.PUdate);
                 replaceExistingCellValue("C21", indexes.PUtime);
+                replaceExistingCellValue("B31", indexes.PuPoc);
 
 
                 // Delivery Info
@@ -566,7 +573,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 replaceExistingCellValue("K20", indexes.Delzip);
                 replaceExistingCellValue("G21", indexes.Deldate);
                 replaceExistingCellValue("I21", indexes.Deltime);
-                replaceExistingCellValue("B31", indexes.DelPoc);
+                replaceExistingCellValue("B32", indexes.DelPoc);
 
 
                 // Service Info
@@ -594,18 +601,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 replaceExistingCellValue("F9", indexes.SubDate);
 
 
-                // =====================================================
+                // =====================
                 // 14. PUT XML BACK INTO XLSX
-                // =====================================================
+                // =====================
 
                 zip.file("xl/worksheets/sheet1.xml", worksheetXML);
 
                 zip.file("xl/sharedStrings.xml", sharedStringsXML);
 
 
-                // =====================================================
+                // =====================
                 // 15. FORCE EXCEL TO RECALCULATE
-                // =====================================================
+                // =====================
 
                 if (/<calcPr\b/i.test(workbookXML)) {
 
@@ -624,12 +631,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
                 }
 
-                zip.file("xl/workbook.xml",workbookXML);
+                zip.file("xl/workbook.xml", workbookXML);
 
 
-                // =====================================================
+                // =====================
                 // 16. GENERATE XLSX
-                // =====================================================
+                // =====================
 
                 const outputBlob =
                     await zip.generateAsync({
@@ -637,9 +644,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
 
-                // =====================================================
+                // =====================
                 // 17. DOWNLOAD QUOTE
-                // =====================================================
+                // =====================
 
                 const downloadURL = URL.createObjectURL(outputBlob);
                 const link = document.createElement("a");
@@ -672,9 +679,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // =========================================================
+    // =====================
     // XML ESCAPING
-    // =========================================================
+    // =====================
 
     function escapeXML(value) {
         return String(value)

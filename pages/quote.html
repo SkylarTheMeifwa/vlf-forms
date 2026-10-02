@@ -50,10 +50,21 @@
 
                 <fieldset class="time">
                     <legend>At</legend>
-                    <input type="date" id="PU-Date" required>
-                    <input type="time" id="PU-Time" required>
+                    <p class="date" id="PU-Date">
+                        <input type="number" id="PU-month" placeholder="MM" minlength="2" maxlength="2" max="12" min="1"
+                            required>/
+                        <input type="number" id="PU-day" placeholder="DD" minlength="2" maxlength="2" required>/
+                        <input type="number" id="PU-year" placeholder="YYYY" minlength="4" maxlength="4" required>
+                    </p>
+
+                    <textarea id="PU-Time" placeholder="i.e. '10:00 AM'&#10'10:AM - 2:00 PM'" required></textarea>
                 </fieldset>
             </div>
+            <fieldset>
+                <Legend>Pick Up Point of Contact</Legend>
+                <textarea id="PU-POC" placeholder="Name and Phone Number if different from Company Representative"
+                    required></textarea>
+            </fieldset>
         </div>
 
         <div class="card">
@@ -70,8 +81,13 @@
 
                 <fieldset class="time">
                     <legend>On</legend>
-                    <input type="date" id="Del-Date" required>
-                    <input type="time" id="Del-Time" required>
+                    <p class="date">
+                        <input type="number" id="Del-month" placeholder="MM" minlength="2" maxlength="2" max="12"
+                            min="1" required>/
+                        <input type="number" id="Del-day" placeholder="DD" minlength="2" maxlength="2" required>/
+                        <input type="number" id="Del-year" placeholder="YYYY" minlength="4" maxlength="4" required>
+                    </p>
+                    <textarea id="Del-Time" placeholder="i.e. '10:00 AM'&#10'10:AM - 2:00 PM'" required></textarea>
                 </fieldset>
             </div>
             <fieldset>
@@ -90,14 +106,14 @@
 
             <fieldset class="ServiceDetails">
                 <legend>Detailed Description of Services Provided</legend>
-                <input type="text" id="SI-Desc"
-                    placeholder="i.e. 'Transportation of 10 Boxes Containing Clothing Material'" required>
-                <input type="number" id="SI-Qty" placeholder="QTY/Miles" required>
-                <input type="number" id="SI-UnitPrice" placeholder="Unit Price" required>
-                <input type="text" id="SI-Desc2"
-                    placeholder="i.e. 'Boxes Dimensions and Weight: 20FTx20FTx20FT and 15 lbs ea.'">
-                <input type="number" id="SI-Qty2" placeholder="QTY/Miles">
-                <input type="number" id="SI-UnitPrice2" placeholder="Unit Price">
+                <textarea type="text" id="SI-Desc"
+                    placeholder="i.e. 'Transportation of 10 Boxes Containing Clothing Material'" required></textarea>
+                <input type="number" id="SI-Qty" placeholder="QTY/Miles" step="0.01" required>
+                <input type="number" id="SI-UnitPrice" placeholder="Unit Price" step="0.01" required>
+                <textarea type="text" id="SI-Desc2"
+                    placeholder="i.e. 'Boxes Dimensions and Weight: 20FTx20FTx20FT and 15 lbs ea.'"></textarea>
+                <input type="number" id="SI-Qty2" placeholder="QTY/Miles" step="0.01">
+                <input type="number" id="SI-UnitPrice2" placeholder="Unit Price" step="0.01">
             </fieldset>
         </div>
 
@@ -121,11 +137,14 @@
                 <fieldset>
                     <Legend>Price Adjustments</Legend>
                     <div class="FI-Discount">
-                        <input type="number" id="FI-Discount" placeholder="Discount %">
+                        <input type="number" id="FI-Discount" placeholder="Discount %" step="0.01">
                         <p>Amount: $<span id="FI-DiscountAmount">0.00</span></p>
                     </div>
                     <div class="FI-Adjustments">
-                        <input type="number" id="FI-AddAdj" placeholder="Adjustments">
+                        <label for="FI-Adjustments">Adjustments is set to calculate <strong class="adjLabel">Additional
+                                Charges</strong>. Use '-' to
+                            input a credit.</label>
+                        <input type="number" id="FI-AddAdj" placeholder="Adjustments" step="0.01">
                         <input type="text" id="FI-AddAdjDesc" placeholder="Why was this additional adjustment made?">
                     </div>
                 </fieldset>
@@ -173,7 +192,12 @@
             <div class="submit">
                 <fieldset class="SubDate">
                     <Label for="SubDate">Submitted On:</Label>
-                    <input type="date" id="SubDate" required>
+                    <p class="date" id="SubDate">
+                        <input type="number" id="SD-month" placeholder="MM" minlength="2" maxlength="2" max="12" min="1"
+                            required>/
+                        <input type="number" id="SD-day" placeholder="DD" minlength="2" maxlength="2" required>/
+                        <input type="number" id="SD-year" placeholder="YYYY" minlength="4" maxlength="4" required>
+                    </p>
                 </fieldset>
 
                 <fieldset class="buttons">

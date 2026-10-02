@@ -1,22 +1,21 @@
-// =========================================================
+// =====================
 // DROPBOX CONNECTION
-// =========================================================
-
+// =====================
 const DROPBOX_APP_KEY = "6gxrjei4t4jm04m";
 
 
-// =========================================================
+// =====================
 // REDIRECT URI
-// =========================================================
+// =====================
 
 function getDropboxRedirectUri() {
     return window.location.origin + window.location.pathname;
 }
 
 
-// =========================================================
+// =====================
 // PKCE
-// =========================================================
+// =====================
 
 function generateRandomString(length) {
 
@@ -56,9 +55,9 @@ async function createCodeChallenge(codeVerifier) {
 }
 
 
-// =========================================================
+// =====================
 // CONNECT TO DROPBOX
-// =========================================================
+// =====================
 
 async function connectDropbox() {
 
@@ -91,9 +90,9 @@ async function connectDropbox() {
 }
 
 
-// =========================================================
+// =====================
 // HANDLE DROPBOX CALLBACK
-// =========================================================
+// =====================
 
 async function handleDropboxRedirect() {
 
@@ -194,9 +193,9 @@ async function handleDropboxRedirect() {
 }
 
 
-// =========================================================
+// =====================
 // CHECK CONNECTION
-// =========================================================
+// =====================
 
 function isDropboxConnected() {
 
@@ -268,9 +267,9 @@ async function getVLFFormsFiles() {
 }
 
 
-// =========================================================
+// =====================
 // TEST DROPBOX
-// =========================================================
+// =====================
 
 async function testDropboxConnection() {
 
@@ -317,9 +316,9 @@ async function testDropboxConnection() {
 }
 
 
-// =========================================================
+// =====================
 // CHECK TEMPLATE ACCESS
-// =========================================================
+// =====================
 
 async function isTemplateAccessible(templateName) {
 
@@ -338,9 +337,9 @@ async function isTemplateAccessible(templateName) {
 }
 
 
-// =========================================================
+// =====================
 // OPEN FORM IF TEMPLATE IS ACCESSIBLE
-// =========================================================
+// =====================
 
 async function openFormIfAccessible(
     templateName,
@@ -417,9 +416,9 @@ async function downloadDropboxTemplate(templateName) {
     return await response.arrayBuffer();
 }
 
-// =========================================================
+// =====================
 // STARTUP
-// =========================================================
+// =====================
 
 document.addEventListener(
     "DOMContentLoaded",
